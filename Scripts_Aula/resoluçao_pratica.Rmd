@@ -1,13 +1,7 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
-
-# Resolução do Protocolo de Prática – Minicurso Introdução ao R
+# ResoluÃ§Ã£o do Protocolo de PrÃ¡tica â€“ Minicurso IntroduÃ§Ã£o ao R
 ## Autor: Bruno Garcia Piato
 ___
-#### **Seção 1: Explorando objetos no R**
+#### **SeÃ§Ã£o 1: Explorando objetos no R**
 
 __1. Criar e manipular vetores__   
 
@@ -15,7 +9,7 @@ i. Crie um vetor contendo os nomes de alguns integrantes do curso.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 nomes <- c("Bruno", "Daubian", "Stephanie", "Charles", "Max")
 ```
-ii. Delete o 4º nome.
+ii. Delete o 4Âº nome.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 nomes <- nomes[-4]
 ```
@@ -30,7 +24,7 @@ i. Crie uma matriz 3x3 contendo os valores 1, 2 e 3 na primeira coluna, 4, 5 e 6
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 matriz1 <- matrix(ncol = 3, nrow = 3, seq(1:9), byrow = FALSE)
 ```
-ii. Crie uma matriz 3x3 contendo valores sequenciais de 1 a 9 distribuídos por linha.
+ii. Crie uma matriz 3x3 contendo valores sequenciais de 1 a 9 distribuÃ­dos por linha.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 matriz2 <- matrix(ncol = 3, nrow = 3, seq(1:9), byrow = TRUE)
 ```
@@ -45,15 +39,15 @@ matriz1 * 2
 
 __3. Criar e manipular dataframes__   
 
-i. Crie um dataframe contendo o nome de cada aluno, sua idade, titulação acadêmica e linha principal de pesquisa.
+i. Crie um dataframe contendo o nome de cada aluno, sua idade, titulaÃ§Ã£o acadÃªmica e linha principal de pesquisa.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
-dataframe <- data.frame(Nomes = c("Bruno","Daubian","Stephanie","Charles","Max"), Idade = c(28, 26, 25, 36, 36), Titulo = c("MSc","MSc","MSc","PhD","MSc"), Linha_Pesquisa = c("Filogeografia","Sistematica","Paleontologia","Sistematica","Biologia Molecular"), stringsAsFactors = FALSE) # O argumento stringsAsFactors = FALSE é importante para que a função data.frame() não transforme as variáveis Nomes e Linha_Pesquisa em fatores, impedindo a entrada posterior de termos contendo mais de uma palavra. Teste este e o próximo passos mudando este argumento para TRUE
+dataframe <- data.frame(Nomes = c("Bruno","Daubian","Stephanie","Charles","Max"), Idade = c(28, 26, 25, 36, 36), Titulo = c("MSc","MSc","MSc","PhD","MSc"), Linha_Pesquisa = c("Filogeografia","Sistematica","Paleontologia","Sistematica","Biologia Molecular"), stringsAsFactors = FALSE) # O argumento stringsAsFactors = FALSE Ã© importante para que a funÃ§Ã£o data.frame() nÃ£o transforme as variÃ¡veis Nomes e Linha_Pesquisa em fatores, impedindo a entrada posterior de termos contendo mais de uma palavra. Teste este e o prÃ³ximo passos mudando este argumento para TRUE
 ```
-ii. Adicione ao dataframe uma linha contendo as informações do Dr. Willi Hennig aos 42 anos, quando publicou seu trabalho seminal sobre sistemática filogenética.
+ii. Adicione ao dataframe uma linha contendo as informaÃ§Ãµes do Dr. Willi Hennig aos 42 anos, quando publicou seu trabalho seminal sobre sistemÃ¡tica filogenÃ©tica.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dataframe[nrow(dataframe)+1,] <- c("Willi Hennig", "42", "PhD", "Sistematica")
 ```
-iii. Adicione uma coluna contendo o sexo de cada observação.
+iii. Adicione uma coluna contendo o sexo de cada observaÃ§Ã£o.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dataframe <- cbind(dataframe, Sexo = c("M", "M", "F", "M", "M", "M"))
 ```
@@ -62,10 +56,10 @@ ou
 dataframe[5] <- c("M", "M", "F", "M", "M", "M")
 colnames(dataframe)[5] <- "Sexo"
 ```
-iv. Transforme a coluna recém-adicionada em um fator.
+iv. Transforme a coluna recÃ©m-adicionada em um fator.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dataframe$Sexo <- factor(dataframe$Sexo)
-class(dataframe$Sexo) # Para verificarmos se a mudança foi mesmo realizada
+class(dataframe$Sexo) # Para verificarmos se a mudanÃ§a foi mesmo realizada
 ```
 v. Selecione somente os participantes com mais de 30 anos.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
@@ -75,7 +69,7 @@ ou
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dplyr::filter(dataframe, dataframe$Idade>=30)
 ```
-vi. Selecione somente os participantes que trabalhem com sistemática.
+vi. Selecione somente os participantes que trabalhem com sistemÃ¡tica.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dataframe[dataframe$Linha_Pesquisa=="Sistematica",]
 ```
@@ -91,30 +85,30 @@ dataframe[dataframe$Idade<=30 & dataframe$Linha_Pesquisa=="Biogeografia",]
 
 __4. Criar listas__   
 
-i. Crie uma lista contendo dois itens: o dataframe completo do exercício anterior e um vetor booleano (verdadeiro ou falso) para se o participante consome ou não consome carne.
+i. Crie uma lista contendo dois itens: o dataframe completo do exercÃ­cio anterior e um vetor booleano (verdadeiro ou falso) para se o participante consome ou nÃ£o consome carne.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 lista <- list(Dados = dataframe, Veg = c(F, T, F, F, F, T))
 ```
-ii. Adicione à lista um vetor fatorial com V para os participantes vivos e M para os mortos.
+ii. Adicione Ã  lista um vetor fatorial com V para os participantes vivos e M para os mortos.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 lista$Vivo_Morto <- c("V", "V", "V", "V", "V", "M")
 ```
-iii. Adicione os dois vetores recém-criados ao dataframe original.
+iii. Adicione os dois vetores recÃ©m-criados ao dataframe original.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dataframe <- cbind(dataframe, Veg = lista$Veg, Vivo_Morto = lista$Vivo_Morto)
 ```
 _____
-#### Seção 2: Importação, exploração e preparação de dados
+#### SeÃ§Ã£o 2: ImportaÃ§Ã£o, exploraÃ§Ã£o e preparaÃ§Ã£o de dados
 __1. Importar dados__   
 
 i. Importe o arquivo Pokemons.csv para um dataframe no R.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
-pokemons <- read.csv("C:/Users/piato/Dropbox/BIOLOGIA/R/MEU CURSO DE R/Material Minicurso Introdu��o ao R/Dados/Pokemons.csv") # Troque o caminho para a pasta em que o arquivo Pokemons.csv se encontra em seu computador. As informações foram baixada do site https://www.kaggle.com/alopez247/pokemon e retiradas do repositório de informações https://bulbapedia.bulbagarden.net/wiki/Main_Page 
+pokemons <- read.csv("C:/Users/piato/Dropbox/BIOLOGIA/R/MEU CURSO DE R/Material Minicurso Introdução ao R/Dados/Pokemons.csv") # Troque o caminho para a pasta em que o arquivo Pokemons.csv se encontra em seu computador. As informaÃ§Ãµes foram baixada do site https://www.kaggle.com/alopez247/pokemon e retiradas do repositÃ³rio de informaÃ§Ãµes https://bulbapedia.bulbagarden.net/wiki/Main_Page 
 ```
 
 __2. Explorar inicialmente os dados__   
 
-i. Verifique a estrutura, o resumo, o início e o final dos dados. Transforme a coluna Name de fator para caracteres
+i. Verifique a estrutura, o resumo, o inÃ­cio e o final dos dados. Transforme a coluna Name de fator para caracteres
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 str(pokemons)
 summary(pokemons)
@@ -122,21 +116,21 @@ head(pokemons, 10)
 tail(pokemons, 10)
 pokemons$Name <- as.character(pokemons$Name)
 ```
-ii. Quais são os Pokémons com maior e menor valores de pontos de vida (HP)?
+ii. Quais sÃ£o os PokÃ©mons com maior e menor valores de pontos de vida (HP)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 max(pokemons$HP)
 pokemons[pokemons$HP == max(pokemons$HP),c(2, 6)]
 min(pokemons$HP)
 pokemons[pokemons$HP == min(pokemons$HP),c(2,6)]
 ```
-iii. Quais são os Pokémons com maior e menor ataques (Attack + Sp_Atk)?
+iii. Quais sÃ£o os PokÃ©mons com maior e menor ataques (Attack + Sp_Atk)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 pokemons2 <- cbind(pokemons, ataque = pokemons$Sp_Atk + pokemons$Attack)
 pokemons2[,c(2, 6, 9, 10, 24)]
 pokemons2[pokemons2$ataque == max(pokemons2$ataque),c(2, 6, 7, 9, 24)]
 pokemons2[pokemons2$ataque == min(pokemons2$ataque),c(2, 6, 7, 9, 24)]
 ```
-iv. Quais são os Pokémons com maior e menor defesas (Defense + Sp_Def)?
+iv. Quais sÃ£o os PokÃ©mons com maior e menor defesas (Defense + Sp_Def)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 pokemons3 <- cbind(pokemons2, defesa = pokemons$Sp_Def + pokemons$Defense)
 pokemons3[,c(2, 6, 9, 10, 24)]
@@ -146,11 +140,11 @@ pokemons3[pokemons3$defesa == min(pokemons3$defesa),c(2, 6, 8, 10, 24)]
 
 __3. Preparar dados__   
 
-i. Selecione somente os Pokémons lendários, criando um objeto somente com eles.
+i. Selecione somente os PokÃ©mons lendÃ¡rios, criando um objeto somente com eles.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 lendarios <- pokemons3[pokemons3$isLegendary == "True",]
 ```
-ii. Quais Pokémons lendários têm maior probabilidade de captura (Catch_Rate/255)?
+ii. Quais PokÃ©mons lendÃ¡rios tÃªm maior probabilidade de captura (Catch_Rate/255)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 lendarios[lendarios$Catch_Rate == max(lendarios$Catch_Rate), c(2, 6, 9, 10, 22, 24, 25)]
 ```
@@ -158,44 +152,44 @@ ou
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 head(dplyr::arrange(lendarios, desc(Catch_Rate)))
 ```
-iii. Organize os Pokémons lendários em ordem alfabética.
+iii. Organize os PokÃ©mons lendÃ¡rios em ordem alfabÃ©tica.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dplyr::arrange(lendarios, Name)
 ```
-iv. Organize os Pokémons lendários em ordem decrescente da soma de todas as características (variável Total).
+iv. Organize os PokÃ©mons lendÃ¡rios em ordem decrescente da soma de todas as caracterÃ­sticas (variÃ¡vel Total).
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dplyr::arrange(lendarios, desc(Total))
 ```
-v. Amostre aleatoriamente cinco Pokémons lendários (antes de implementar a linha para o sorteio, use a função set.seed(123) para garantir que o resultado de todos seja o mesmo e replicável).
+v. Amostre aleatoriamente cinco PokÃ©mons lendÃ¡rios (antes de implementar a linha para o sorteio, use a funÃ§Ã£o set.seed(123) para garantir que o resultado de todos seja o mesmo e replicÃ¡vel).
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 set.seed(123)
 dplyr::sample_n(lendarios, 5)
 ```
-vi. Agrupe os Pokémons lendários de acordo com a geração a que pertencem.
+vi. Agrupe os PokÃ©mons lendÃ¡rios de acordo com a geraÃ§Ã£o a que pertencem.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ```
-vii. Quantos Pokémons lendários há de cada tipo primário?
+vii. Quantos PokÃ©mons lendÃ¡rios hÃ¡ de cada tipo primÃ¡rio?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 dplyr::count(lendarios, Type_1)
 ```
-Mais funções e usos do pacote _dplyr_ podem ser encontradas no site https://www3.nd.edu/~steve/computing_with_data/24_dplyr/dplyr.html
+Mais funÃ§Ãµes e usos do pacote _dplyr_ podem ser encontradas no site https://www3.nd.edu/~steve/computing_with_data/24_dplyr/dplyr.html
 
 _____
-#### Seção 3: Visualização de dados
-__1. Plotar diferentes tipos de gráficos com ggplot2__  
+#### SeÃ§Ã£o 3: VisualizaÃ§Ã£o de dados
+__1. Plotar diferentes tipos de grÃ¡ficos com ggplot2__  
 
-i. Faça um gráfico de dispersão dos pontos de ataque (Attack) pelos pontos de defesa (Defense), colorindo de acordo com seu tipo primário (Type_1).
+i. FaÃ§a um grÃ¡fico de dispersÃ£o dos pontos de ataque (Attack) pelos pontos de defesa (Defense), colorindo de acordo com seu tipo primÃ¡rio (Type_1).
 ```{r echo = T, warning = F, results = 'hide', message = F, fig.show = 'asis'}
 library(ggplot2)
 ggplot(lendarios) + geom_point(aes(x = Defense, y = Attack, color = Type_1), size = 4, alpha = 0.4)
 ```
 
-ii. Faça um gráfico de caixa (boxplot) dos pontos de vida (HP) de acordo com o tipo primário (Type_1) do Pokémon.
+ii. FaÃ§a um grÃ¡fico de caixa (boxplot) dos pontos de vida (HP) de acordo com o tipo primÃ¡rio (Type_1) do PokÃ©mon.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ggplot(lendarios) + geom_boxplot(aes(y = HP, x = Type_1, fill = Type_1))
 ```
 
-iii. Faça um gráfico de pizza para as proporções dos tipos primários (Type_1) de Pokémons.
+iii. FaÃ§a um grÃ¡fico de pizza para as proporÃ§Ãµes dos tipos primÃ¡rios (Type_1) de PokÃ©mons.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ggplot(pokemons3) + geom_bar(aes(x = Type_1, fill = Type_1)) + coord_polar() + theme_bw() + theme(legend.position="none")
 ```
@@ -205,7 +199,7 @@ ou
 ggplot(pokemons3) + geom_bar(aes(x = "", y = Type_1, fill = Type_1), stat = "identity") + coord_polar("y", start=0) + theme_bw()
 ```
 
-iv. Qual é a melhor evolução do Eevee (Jolteon, Flareon, Vaporeon, Umbreon, Espeon, Leafeon, Glaceon ou Sylveon) com base em seus pontos somados (Total)? Plote quatro gráficos de colunas (_geom_col()_), um para pontos de ataque (Attack), uma para pontos de ataque especial (Sp_Atk), um para pontos de defesa (Defense) e um para defesa especial (Sp_Def), colorindo as barras de acordo com a espécie (_scale_fill_manual(values = c()_).
+iv. Qual Ã© a melhor evoluÃ§Ã£o do Eevee (Jolteon, Flareon, Vaporeon, Umbreon, Espeon, Leafeon, Glaceon ou Sylveon) com base em seus pontos somados (Total)? Plote quatro grÃ¡ficos de colunas (_geom_col()_), um para pontos de ataque (Attack), uma para pontos de ataque especial (Sp_Atk), um para pontos de defesa (Defense) e um para defesa especial (Sp_Def), colorindo as barras de acordo com a espÃ©cie (_scale_fill_manual(values = c()_).
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 eevee_evo <- pokemons3[pokemons3$Name == "Jolteon" | pokemons3$Name == "Flareon" | pokemons3$Name == "Vaporeon" | pokemons3$Name ==  "Umbreon" | pokemons3$Name ==  "Espeon" | pokemons3$Name ==  "Leafeon" | pokemons3$Name ==  "Glaceon" | pokemons3$Name ==  "Sylveon", ]
 
@@ -252,7 +246,7 @@ ggplot(eevee_evo) +
 
 ```   
 
-v. Qual é, entre as evoluções do Eevee, o melhor atacante (Attack + Sp_Atk)?
+v. Qual Ã©, entre as evoluÃ§Ãµes do Eevee, o melhor atacante (Attack + Sp_Atk)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ggplot(eevee_evo) + 
   geom_col(aes(y = (Sp_Atk+Attack), x = Name, fill = Name), col = "black") + 
@@ -262,7 +256,7 @@ ggplot(eevee_evo) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-vi. Qual é, entre as evoluções do Eevee, o melhor atacante (Defense + Sp_Def)?
+vi. Qual Ã©, entre as evoluÃ§Ãµes do Eevee, o melhor atacante (Defense + Sp_Def)?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ggplot(eevee_evo) + 
   geom_col(aes(y = (Sp_Def+Defense), x = Name, fill = Name), col = "black") + 
@@ -273,10 +267,10 @@ ggplot(eevee_evo) +
 ```
 
 _____
-#### Seção 4: Análises estatísticas e ecológicas básicas
-__1. Estatísticas básicas__ 
+#### SeÃ§Ã£o 4: AnÃ¡lises estatÃ­sticas e ecolÃ³gicas bÃ¡sicas
+__1. EstatÃ­sticas bÃ¡sicas__ 
 
-i. Há correlação entre pontos de ataque (Attack) e de defesa (Defense) dos Pokémons? Plote o gráfico de correlação entre eles, ajustando uma reta de regressão linear.
+i. HÃ¡ correlaÃ§Ã£o entre pontos de ataque (Attack) e de defesa (Defense) dos PokÃ©mons? Plote o grÃ¡fico de correlaÃ§Ã£o entre eles, ajustando uma reta de regressÃ£o linear.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ataqueVSdefesa_lm <- lm(pokemons3$Attack~pokemons3$Defense)
 summary(ataqueVSdefesa_lm)
@@ -294,7 +288,7 @@ library(ggplot2)
 ggplot(pokemons3) + geom_point(aes(x = Attack, y = Defense)) + geom_smooth(method = "lm", aes(x = Attack, y = Defense))
 ```
 
-ii. Há correlação entre pontos de ataque (Attack) e pontos de ataque especial (Sp_Atk) dos Pokémons? Plote o gráfico de correlação entre eles, ajustando uma reta de regressão linear.
+ii. HÃ¡ correlaÃ§Ã£o entre pontos de ataque (Attack) e pontos de ataque especial (Sp_Atk) dos PokÃ©mons? Plote o grÃ¡fico de correlaÃ§Ã£o entre eles, ajustando uma reta de regressÃ£o linear.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ataque_lm <- lm(pokemons3$Attack~pokemons3$Sp_Atk)
 summary(ataque_lm)
@@ -311,15 +305,15 @@ ou
 ggplot(pokemons3) + geom_point(aes(x = Sp_Atk, y = Attack)) + geom_smooth(method = "lm", aes(x = Sp_Atk, y = Attack))
 ```
 
-iii. Há diferença entre os tipos primários (Type_1) de Pokémons quanto a seus pontos de vida, ou os diferentes tipos de Pokémons possuem mesma variação de pontos de vida?
+iii. HÃ¡ diferenÃ§a entre os tipos primÃ¡rios (Type_1) de PokÃ©mons quanto a seus pontos de vida, ou os diferentes tipos de PokÃ©mons possuem mesma variaÃ§Ã£o de pontos de vida?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 anova_HP <- aov(HP~Type_1, data = pokemons3)
 summary(anova_HP)
-TukeyHSD(anova_HP) # Este teste pode ser utilizado para identificar entre quais níveis do fator estão as diferenças encontradas na ANOVA
-ggplot(pokemons3) + geom_boxplot(aes(y = HP, x = Type_1, fill = Type_1)) # Podemos querer visualizar as diferenças encontradas pelo teste de ANOVA. Lembre-se, entretanto, que em boxplots, o traço no meio das caixas é a mediana, enquanto a ANOVA utiliza medidas de média para testas a hipótese nula (H0) de que não há diferença entre as médias dos níveis de um fator
+TukeyHSD(anova_HP) # Este teste pode ser utilizado para identificar entre quais nÃ­veis do fator estÃ£o as diferenÃ§as encontradas na ANOVA
+ggplot(pokemons3) + geom_boxplot(aes(y = HP, x = Type_1, fill = Type_1)) # Podemos querer visualizar as diferenÃ§as encontradas pelo teste de ANOVA. Lembre-se, entretanto, que em boxplots, o traÃ§o no meio das caixas Ã© a mediana, enquanto a ANOVA utiliza medidas de mÃ©dia para testas a hipÃ³tese nula (H0) de que nÃ£o hÃ¡ diferenÃ§a entre as mÃ©dias dos nÃ­veis de um fator
 ```
 
-iv. Os pontos de vida dos Pokémons se apresentam como em uma distribuição normal? Plote um gráfico de barras da distribuição dos pontos de vida dos Pokémons em relação a sua frequência.
+iv. Os pontos de vida dos PokÃ©mons se apresentam como em uma distribuiÃ§Ã£o normal? Plote um grÃ¡fico de barras da distribuiÃ§Ã£o dos pontos de vida dos PokÃ©mons em relaÃ§Ã£o a sua frequÃªncia.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 shapiro.test(pokemons3$HP)
 hist(pokemons3$HP)
@@ -330,21 +324,21 @@ ou
 ggplot(pokemons3) + geom_histogram(aes(x = HP), alpha = 0.6, fill = "goldenrod3")
 ```
 
-__2. PCA com dados eco-morfológicos__ 
+__2. PCA com dados eco-morfolÃ³gicos__ 
 
-i. Carregue o conjunto de dados iris presente no pacote base do R. Veja a estrutura e o resumo dos dados e plote rapidamente um boxplot para cada variável morfológica de acordo com as espécies do gênero _Iris_ para explorar inicialmente os dados. Que insights podemos tirar dessa visualização preliminar dos dados?
+i. Carregue o conjunto de dados iris presente no pacote base do R. Veja a estrutura e o resumo dos dados e plote rapidamente um boxplot para cada variÃ¡vel morfolÃ³gica de acordo com as espÃ©cies do gÃªnero _Iris_ para explorar inicialmente os dados. Que insights podemos tirar dessa visualizaÃ§Ã£o preliminar dos dados?
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 data(iris)
 summary(iris)
 str(iris)
-par(mfrow = c(2,2)) # Podemos usar a função par() para definir propriedades do dispositivo gráfico. Neste caso estamos definindo, no argumento mfrow, um vetor contendo o número de linhas e colunas, respectivamente que o dispositivo gráfico deve ter. Para resetar o dospositivo podemos usar a função dev.off()
+par(mfrow = c(2,2)) # Podemos usar a funÃ§Ã£o par() para definir propriedades do dispositivo grÃ¡fico. Neste caso estamos definindo, no argumento mfrow, um vetor contendo o nÃºmero de linhas e colunas, respectivamente que o dispositivo grÃ¡fico deve ter. Para resetar o dospositivo podemos usar a funÃ§Ã£o dev.off()
 boxplot(iris$Sepal.Length~iris$Species)
 boxplot(iris$Sepal.Width~iris$Species)
 boxplot(iris$Petal.Length~iris$Species)
 boxplot(iris$Petal.Width~iris$Species)
 ```
 
-ii. Realize uma Análise de Componentes Principais (PCA) escalonada utilizando as quatro variáveis morfológicas e plote um gráfico do resultado dos dois principais componentes (PC1 e PC2), colorindo por espécie.
+ii. Realize uma AnÃ¡lise de Componentes Principais (PCA) escalonada utilizando as quatro variÃ¡veis morfolÃ³gicas e plote um grÃ¡fico do resultado dos dois principais componentes (PC1 e PC2), colorindo por espÃ©cie.
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 PCAiris <- princomp(iris[,-5], cor = T)
 library(ggplot2)
@@ -352,33 +346,33 @@ ggplot(as.data.frame(PCAiris$scores)) + geom_point(aes(x = Comp.1, y = Comp.2, c
 ```
 
 
-__3. PCA com dados genéticos__ 
+__3. PCA com dados genÃ©ticos__ 
 
 i. Algo
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ```
 
-__4. Diversidade Filogenética__ 
+__4. Diversidade FilogenÃ©tica__ 
 
 i. Algo
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ```
 
 _____
-#### Seção 5: Análises filogenéticas básicas
-__1. Análise de máxima parcimônia__ 
+#### SeÃ§Ã£o 5: AnÃ¡lises filogenÃ©ticas bÃ¡sicas
+__1. AnÃ¡lise de mÃ¡xima parcimÃ´nia__ 
 
 i. Alguma coisa
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ```
-__2. Análise de máxima verossimilhança__ 
+__2. AnÃ¡lise de mÃ¡xima verossimilhanÃ§a__ 
 
 i. Algo
 ```{r echo = T, warning = F, results='hide', fig.show = 'asis'}
 ```
 
 _____
-#### Seção 6: Breves manipulações de mapas
+#### SeÃ§Ã£o 6: Breves manipulaÃ§Ãµes de mapas
 __1. Importando rasters__
 
 i. Algo
